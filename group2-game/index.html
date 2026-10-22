@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Token Arena — Sepolia</title>
+  <style>
+    :root{color-scheme:dark;font-family:system-ui,sans-serif;background:#10131b;color:#f4f6fb}
+    body{max-width:850px;margin:0 auto;padding:28px 18px}
+    .card{background:#1b2130;border:1px solid #343d51;border-radius:16px;padding:20px;margin:14px 0}
+    button{padding:11px 16px;border:0;border-radius:9px;background:#8bd3ff;color:#10131b;font-weight:700;cursor:pointer;margin:4px}
+    button:disabled{opacity:.45;cursor:not-allowed}
+    input{padding:10px;border-radius:8px;width:min(100%,420px)}
+    .muted{color:#b8c2d8}.status{white-space:pre-wrap;overflow-wrap:anywhere}
+    a{color:#8bd3ff}
+  </style>
+</head>
+<body>
+  <h1>⚔️ Token Arena</h1>
+  <p class="muted">Ethereum Sepolia classroom game. Actions cost SepoliaETH gas, but the game never takes your tokens.</p>
+  <div class="card">
+    <button id="connect">Connect MetaMask</button>
+    <p id="wallet" class="muted">Wallet not connected.</p>
+    <p id="network"></p>
+    <button id="refresh" disabled>Refresh balances / score</button>
+  </div>
+  <div class="card">
+    <h2>Your tokens</h2>
+    <p>STUD: <strong id="studBalance">—</strong></p>
+    <p>GAME: <strong id="gameBalance">—</strong></p>
+    <p id="eligibility" class="muted">Connect wallet to check eligibility.</p>
+  </div>
+  <div class="card">
+    <h2>Rules</h2>
+    <ul>
+      <li>You need at least 1 STUD and 1 GAME.</li>
+      <li>Explore earns 1 point. Challenge earns 2 points.</li>
+      <li>You have at most 5 rounds. Reach 5 points to win.</li>
+      <li>The contract validates moves, limits and scores. Each wallet has its own on-chain score.</li>
+    </ul>
+    <button id="explore" disabled>Explore (+1)</button>
+    <button id="challenge" disabled>Challenge (+2)</button>
+    <p>Score: <strong id="score">—</strong> | Rounds: <strong id="rounds">—</strong>/5 | Won: <strong id="won">—</strong></p>
+    <p id="tx" class="status muted"></p>
+  </div>
+  <div class="card">
+    <h2>Configuration needed</h2>
+    <p class="muted">After deployment, edit <code>game.js</code> and replace the three placeholder addresses with real Sepolia addresses. Never paste private keys here.</p>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.5/ethers.umd.min.js"></script>
+  <script src="./game.js"></script>
+</body>
+</html>

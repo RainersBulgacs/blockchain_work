@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Token Dashboard — Sepolia</title>
+  <style>
+    :root{font-family:system-ui,sans-serif;color:#18212f;background:#f4f7fb}
+    body{max-width:900px;margin:0 auto;padding:28px 18px}
+    .card{background:white;border:1px solid #dce3ee;border-radius:14px;padding:20px;margin:14px 0;box-shadow:0 4px 18px #15233a0b}
+    button{padding:11px 16px;border:0;border-radius:8px;background:#1d4ed8;color:white;font-weight:700;cursor:pointer}
+    button:disabled{opacity:.45;cursor:not-allowed}
+    input,select{display:block;width:min(100%,520px);box-sizing:border-box;padding:11px;border:1px solid #bbc7d8;border-radius:8px;margin:7px 0 14px}
+    label{font-weight:650}.muted{color:#5d6a7e}.status{white-space:pre-wrap;overflow-wrap:anywhere}
+    .balances{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+    .balance{background:#eef4ff;padding:15px;border-radius:10px}
+    a{color:#1d4ed8}
+  </style>
+</head>
+<body>
+  <h1>Campus Token Dashboard</h1>
+  <p class="muted">Send CAMP and SKILL tokens on Ethereum Sepolia. This page never asks for a seed phrase or private key.</p>
+  <div class="card">
+    <button id="connect">Connect MetaMask</button>
+    <p id="wallet" class="muted">Wallet not connected.</p>
+    <p id="network"></p>
+  </div>
+  <div class="card">
+    <h2>Token balances</h2>
+    <div class="balances">
+      <div class="balance"><strong>Campus Credit (CAMP)</strong><p id="campBalance">—</p></div>
+      <div class="balance"><strong>Skill Point (SKILL)</strong><p id="skillBalance">—</p></div>
+    </div>
+    <button id="refresh" disabled>Refresh balances</button>
+  </div>
+  <div class="card">
+    <h2>Transfer tokens</h2>
+    <form id="transferForm">
+      <label for="token">Token</label>
+      <select id="token"><option value="camp">Campus Credit (CAMP)</option><option value="skill">Skill Point (SKILL)</option></select>
+      <label for="recipient">Recipient wallet address</label>
+      <input id="recipient" placeholder="0x..." autocomplete="off" required>
+      <label for="amount">Amount (whole or fractional tokens)</label>
+      <input id="amount" type="number" min="0" step="any" placeholder="1.0" required>
+      <button id="send" type="submit" disabled>Review & send in MetaMask</button>
+    </form>
+    <p id="status" class="status muted"></p>
+  </div>
+  <div class="card">
+    <h2>Configuration</h2>
+    <p class="muted">After deploying both contracts, replace the two placeholder addresses in <code>app.js</code>. The lecturer's address is prefilled in the project README; double-check it before sending.</p>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.5/ethers.umd.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
